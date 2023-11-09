@@ -1,6 +1,6 @@
 # upload-model
 
-This api call will upload a model in 2 parts. The first will reserve a spot for the file on our servers and create a database entry, the second part will upload the file to our servers.
+This API call will upload a model in 2 parts. The first will reserve a spot for the file on our servers and create a database entry, the second part will upload the file to our servers.
 
 ## Request
 
@@ -8,7 +8,7 @@ The input expects 4 things in the body, all of them are required.
 
 > ### Example request
 >
->>     // UPLOAD MODEL (PART ONE)
+>>     // Request Presigned URL (PART ONE)
 >>     POST /upload-model
 >>     Headers:
 >>       auth-token: [IdToken]
@@ -22,8 +22,8 @@ The input expects 4 things in the body, all of them are required.
 >>       }
 >
 > This request assumes that,  
-> 1. ``file name`` = The full file name including the file extention.  
-> 2. ``assetID`` = The file name excluding the file extention.  
+> 1. ``file name`` = The full file name including the file extension.  
+> 2. ``assetID`` = The file name excluding the file extension.  
 > 3. ``encodedHash`` = The sha256 hash of the whole file.  
 > 4. ``activeUser`` = Either a username or organization name.  
 > 5. ``IdToken`` = This is the IdToken recieved from logging into the AWS      cognito backend with a user account.  
@@ -42,7 +42,6 @@ The input expects 4 things in the body, all of them are required.
 > 1. ``preSignedUrl`` = The url received from the first request inside the response.  
 > 2. ``values from response.url.fields`` = The fields from the part one response url fields.  
 > 3. ``upload_file`` = The file you are uploading.  
-> 4. ``IdToken`` = This is the IdToken recieved from logging into the AWS      cognito backend with a user account.  
 
 ## Response
 
@@ -50,7 +49,7 @@ The response will have a status code which will represent what the response was.
 
 ### Success Messages
 
-> #### ``Success 200`` From Part 1
+> #### ``Success 200`` From Request Presigned URL
 > A successful response with a response body like this means the upload request was approved.
 >
 >     {
@@ -62,7 +61,7 @@ The response will have a status code which will represent what the response was.
 
 ### Error Messages
 
-> #### ``Error 400`` From Part 1
+> #### ``Error 400`` From Request Presigned URL
 > An unsuccessful response with a response body like this
 >
 >     {
@@ -70,7 +69,7 @@ The response will have a status code which will represent what the response was.
 >     }
 > ``message`` will be the reason the request failed.
 
-> #### ``Error 500`` From Part 1
+> #### ``Error 500`` From Request Presigned URL
 > An unsuccessful response that means there was an internal server error.  
 > This is likely due to an incorrect request.
 
@@ -78,8 +77,8 @@ The response will have a status code which will represent what the response was.
 
 This is an example of how to make a request using the Redux Toolkit in Next.js
 
-    //Declare Part 1 Api function
-    uploadModel: builder.mutation({
+    //Declare Request Presigned URL API function
+    requestPresignedURL: builder.mutation({
       query: (model) => {
         const { IdToken, assetId, file, activeUser, encodedHash } = model;
 
@@ -102,8 +101,8 @@ This is an example of how to make a request using the Redux Toolkit in Next.js
       invalidatesTags: ["Models"]
     })
 
-    //Declare Part 2 Api function
-    uploadModelTwo: builder.mutation({
+    //Declare Upload Model API function
+    uploadModel: builder.mutation({
       query: (response) => {
         const preSignedUrl = response.url.url;
 
@@ -127,16 +126,16 @@ This is an example of how to make a request using the Redux Toolkit in Next.js
       }
     })
 
-    //Call Api Function
+    //Declare required variables
     const IdToken = "YourIdTokenFromCognito";
     const file = [FILE_TO_UPLOAD]; //The actual file, not path
     const activeUser = "Secur3D_User";
 
-    //UPLOAD SELECTED FILE
+    //Upload selected file
     const fileUpload = async () => {
         const encodedHash = useEncodedHash(file);
-        const response = await uploadModel({ file, assetId, IdToken, activeUser, encodedHash });
+        const response = await requestPresignedURL({ file, assetId, IdToken, activeUser, encodedHash });
         if (response) {
-            uploadSecondTime({ file, ...response });
+            uploadModel({ file, ...response });
         }
     };
