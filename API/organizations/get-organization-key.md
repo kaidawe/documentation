@@ -13,7 +13,7 @@ The input expects 1 thing in the query string parameters, It is required.
 >       auth-token: [IdToken]
 > This request assumes a few things,
 > 1. ``activeUser`` = The name of the organization you want to get the api key of.  
-> 2. ``IdToken`` = This is the IdToken recieved from logging into the AWS     cognito backend with a user account.
+> 2. ``IdToken`` = This is the IdToken received from logging into the AWS     cognito backend with a user account.
 
 ## Response
 

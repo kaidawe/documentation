@@ -18,7 +18,7 @@ The input expects 4 things in the query string parameters. selectedUser and hash
 > 
 > This request assumes a few things,
 > 1. ``activeUser`` = Either a username or organization name
-> 2. ``IdToken`` = This is the IdToken recieved from logging into the AWS    cognito backend with a user account.
+> 2. ``IdToken`` = This is the IdToken received from logging into the AWS    cognito backend with a user account.
 
 ## Response
 

@@ -15,7 +15,7 @@ The input expects 1 thing in the query string parameters, it is a required field
 > 
 > This request assumes a few things,
 > 1. ``activeUser`` = Either a username or organization name
-> 2. ``IdToken`` = This is the IdToken recieved from logging into the AWS    cognito backend with a user account.
+> 2. ``IdToken`` = This is the IdToken received from logging into the AWS    cognito backend with a user account.
 
 ## Response
 

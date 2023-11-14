@@ -21,7 +21,7 @@ The input expects 2 things in the body, both are required.
 > This request assumes a few things,
 > 1. ``activeUser`` = Either a username or organization name
 > 2. ``hash`` = The hash/UID of the model you want to delete.
-> 3. ``IdToken`` = This is the IdToken recieved from logging into the AWS    cognito backend with a user account.
+> 3. ``IdToken`` = This is the IdToken received from logging into the AWS    cognito backend with a user account.
 
 ## Response
 

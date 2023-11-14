@@ -4,7 +4,7 @@ This api call will return the comparison results of 2 models.
 
 ## Request
 
-The input expects 2 things in the query string parameters. You must specify both hash1 and hash2, they dont have to be in any specific order.  
+The input expects 2 things in the query string parameters. You must specify both hash1 and hash2, they don't have to be in any specific order.  
 1. ``hash1`` - This is the hash/UID of the first model in the comparison.
 2. ``hash2`` - This is the hash/UID of the second model in the comparison.
 
@@ -15,7 +15,7 @@ The input expects 2 things in the query string parameters. You must specify both
 >       auth-token: [IdToken]
 >
 > This request assumes that,  
-> ``IdToken`` = This is the IdToken recieved from logging into the AWS      cognito backend with a user account.
+> ``IdToken`` = This is the IdToken received from logging into the AWS      cognito backend with a user account.
 
 ## Response
 

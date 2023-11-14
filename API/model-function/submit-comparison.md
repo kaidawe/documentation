@@ -22,7 +22,7 @@ The input expects 3 things in the body, all of them are required.
 > This request assumes that,  
 > 1. ``encodeURIComponent(hash1)`` and ``encodeURIComponent(hash2)`` = The hashes of each of the 2 models you want to compare, they must be URI encoded.
 > 2. ``activeUser`` = Either a username or organization name
-> 3. ``IdToken`` = This is the IdToken recieved from logging into the AWS      cognito backend with a user account.
+> 3. ``IdToken`` = This is the IdToken received from logging into the AWS      cognito backend with a user account.
 
 ## Response
 

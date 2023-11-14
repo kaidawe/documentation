@@ -19,7 +19,7 @@ The input expects 2 things in the body, only ``name`` is required.
 > This request assumes a few things,
 > 1. ``name`` = The name of the new organization
 > 2. ``description`` = The description of the new organization
-> 3. ``IdToken`` = This is the IdToken recieved from logging into the AWS    cognito backend with a user account.
+> 3. ``IdToken`` = This is the IdToken received from logging into the AWS    cognito backend with a user account.
 
 ## Response
 

@@ -26,7 +26,7 @@ The input expects 4 things in the body, all of them are required.
 > 2. ``assetID`` = The file name excluding the file extension.  
 > 3. ``encodedHash`` = The sha256 hash of the whole file.  
 > 4. ``activeUser`` = Either a username or organization name.  
-> 5. ``IdToken`` = This is the IdToken recieved from logging into the AWS      cognito backend with a user account.  
+> 5. ``IdToken`` = This is the IdToken received from logging into the AWS cognito backend with a user account.  
 >
 >>     // UPLOAD MODEL (PART TWO WITH PRESIGNED URL)
 >>     POST [preSignedUrl]
@@ -134,7 +134,7 @@ This is an example of how to make a request using the Redux Toolkit in Next.js
     //Upload selected file
     const fileUpload = async () => {
         const encodedHash = useEncodedHash(file);
-        const response = await requestPresignedURL({ file, assetId, IdToken, activeUser, encodedHash });
+        const response = await requestPresignedURL({ IdToken, assetId, file, activeUser, encodedHash });
         if (response) {
             uploadModel({ file, ...response });
         }
