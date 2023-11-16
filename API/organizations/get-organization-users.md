@@ -1,4 +1,4 @@
-# get-organization-data
+# get-organization-users
 
 This api call will return a list of users that are in the specified organization.  
 
