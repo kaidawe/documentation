@@ -1,4 +1,4 @@
-# invite-to-organization
+# remove-from-organization
 
 This api call will remove a specified user from the specified organization.  
 
@@ -8,7 +8,7 @@ The input expects 2 things in the body, they are both required.
 
 > ### Example request
 >
->     POST /invite-to-organization
+>     POST /remove-from-organization
 >     Headers:
 >       auth-token: [IdToken]
 >     Body:
