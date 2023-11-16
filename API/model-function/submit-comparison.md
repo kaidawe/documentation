@@ -1,4 +1,4 @@
-# request-results
+# submit-comparison
 
 This api call will start a comparison or return the comparison results of 2 models if they have already been compared.
 
