@@ -33,7 +33,7 @@ The response will have a status code which will represent what the response was.
 >       'all_comparisons': [results],
 >       'total_pages': [pages]
 >     }
-> ``results`` will be a list of comparisons in json format.
+> ``results`` will be a list of comparisons in json format, comparisons with a score of -1 are still in process.
 > ``pages`` will be the upper limit of page i.e. ``ceil(total_comparisons / limit)``
 
 ### Error Messages

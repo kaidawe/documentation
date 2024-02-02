@@ -17,7 +17,7 @@ The input expects 3 things in the query string parameters. selectedUser is the o
 > 
 > This request assumes a few things,
 > 1. ``activeUser`` = Either a username or organization name
-> 2. ``IdToken`` = This is the IdToken received from logging into the AWS     cognito backend with a user account.
+> 2. ``IdToken`` = This is the IdToken received from logging into the AWS cognito backend with a user account.
 
 ## Response
 
@@ -32,7 +32,7 @@ The response will have a status code which will represent what the response was.
 >       'all_comparisons': [results],
 >       'total_pages': [pages]
 >     }
-> ``results`` will be a list of comparisons in json format.
+> ``results`` will be a list of comparisons in json format, comparisons with a score of -1 are still in process.
 > ``pages`` will be the upper limit of page i.e. ``ceil(total_comparisons / limit)``
 
 ### Error Messages
