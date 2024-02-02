@@ -73,6 +73,6 @@ This is an example of how to make a request using the Redux Toolkit in Next.js
     //Call Api Function
     const IdToken = "YourIdTokenFromCognito";
     const activeUser = "Secur3D_User";
-    const limit = 25;
+    const limit = 10;
     const page = 2;
     const response = getModels({ IdToken, activeUser, limit, page });

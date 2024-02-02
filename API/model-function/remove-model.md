@@ -1,6 +1,6 @@
 # remove-model
 
-This api call will delete the specified model and anything related to it, e.g. comparisons, thumbnails, etc.
+This api call will delete the specified models and anything related to it, e.g. comparisons, thumbnails, etc.
 
 ## Request
 
@@ -15,12 +15,12 @@ The input expects 2 things in the body, both are required.
 >     Body:
 >     {
 >      "selectedUser": "[activeUser]",
->      "hash": "[hash]"
+>      "modelList": "[hashes]"
 >     }
 > 
 > This request assumes a few things,
 > 1. ``activeUser`` = Either a username or organization name
-> 2. ``hash`` = The hash/UID of the model you want to delete.
+> 2. ``hashes`` = A array of json objects that contain a hash value referring to a model you want to delete.
 > 3. ``IdToken`` = This is the IdToken received from logging into the AWS    cognito backend with a user account.
 
 ## Response
@@ -33,7 +33,7 @@ The response will have a status code which will represent what the response was.
 > A successful response with a response body like this
 >
 >     {
->      'message': 'Model has been deleted'
+>      'message': 'Model(s) has been deleted'
 >     }
 
 ### Error Messages
@@ -55,15 +55,15 @@ The response will have a status code which will represent what the response was.
 This is an example of how to make a request using the Redux Toolkit in Next.js
 
     //Declare Api function
-    deleteModel: builder.mutation({
+    deleteModels: builder.mutation({
       query: (model) => {
-        const { userName, hash, IdToken } = model;
+        const { userName, hashes, IdToken } = model;
         return {
           url: `remove-model`,
           method: "POST",
           body: {
             selectedUser: userName,
-            hash,
+            modelList: hashes,
           },
           headers: {
             "Content-Type": "application/json",
@@ -71,11 +71,17 @@ This is an example of how to make a request using the Redux Toolkit in Next.js
           },
         };
       },
-      invalidatesTags: ["Models"],
     })
 
     //Call Api Function
     const IdToken = "YourIdTokenFromCognito";
     const activeUser = "Secur3D_User";
-    const hash = "ModelToDeleteHash";
-    const response = deleteModel({ activeUser, hash, IdToken });
+    const hashes = [
+      {
+        "hash": "YourHashHere_abcdefghijklmnopqrstuvwxyz"
+      },
+      {
+        "hash": "YourHashHere_zyxwvutsrqponmlkjihgfedcba"
+      }
+    ];
+    const response = deleteModels({ activeUser, hashes, IdToken });
