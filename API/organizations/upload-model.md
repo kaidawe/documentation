@@ -9,7 +9,7 @@ The input expects 3 things in the body, `object_key`, `asset_id`, and `shaHash` 
 All of the other parameters are optional.    
 
 > ### Example request
->   The first request of upload-model gets a presigned-url to upload the file too
+>   The first request of upload-model gets a presigned url to upload the file too
 >
 >    ```{r, tidy=FALSE, eval=FALSE, highlight=FALSE }
 >     // Request Presigned URL (PART ONE)
@@ -36,7 +36,7 @@ All of the other parameters are optional.
 >       }
 >    ```
 >
->   The second part of the upload-model request uses the presigned-url received from the previous request.
+>   The second part of the upload-model request uses the presigned url received from the previous request.
 >   ```
 >     // UPLOAD MODEL (PART TWO WITH PRESIGNED URL)
 >     POST [The url received from the first request inside the response]

@@ -69,7 +69,7 @@ The response will have a status code which will represent what the response was.
 >    "body": "Submit user is not a valid organization or username",
 >  }
 >```
-> This response means that the ``selectedUser`` you submit either isn"t valid or isn"t accessible from the currently logged in account.
+> This response means that the ``selectedUser`` you submit either isn't valid or isn't accessible from the currently logged in account.
 
 > #### ``Error 404``
 > An unsuccessful response with a response body like this
