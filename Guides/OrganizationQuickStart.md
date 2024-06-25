@@ -96,7 +96,7 @@ const fileUpload = async () => {
 ## Retrieving the results
 
 Now that you have uploaded a model, you will want to retrieve the results from that upload.  
-We dont currently have an endpoint to retrive data with an ApiKey but are going to be implementing one shortly. In the meantime you can either access it through a user request by using the [request-file-data endpoint](https://www.app.secur3d.ai/documentation/API/model-function/request-file-data) or of course you can use the [Secur3D portal](https://www.app.secur3d.ai/dashboard/models/manage/list) to check out all of your models in a nice and easy way!
+We dont currently have an endpoint to retrieve data with an ApiKey but are going to be implementing one shortly. In the meantime you can either access it through a user request by using the [request-file-data endpoint](https://www.app.secur3d.ai/documentation/API/model-function/request-file-data) or of course you can use the [Secur3D portal](https://www.app.secur3d.ai/dashboard/models/manage/list) to check out all of your models in a nice and easy way!
 
 ## Final notes
 
