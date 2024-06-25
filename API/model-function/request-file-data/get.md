@@ -4,20 +4,22 @@ This api call will return all data related to a selected model.
 
 ## Request
 
-The input expects 2 things in the query string parameters. You must specify a selectedUser and hash.  
-1. ``selectedUser`` - This is the user you want to access the api through, it can be a username or organization name
-2. ``hash`` - This is the hash/UID of the model you want to get the data of.
+The input expects 2 things in the query string parameters. You must specify a selectedUser and hash.
+
+1. `selectedUser` - This is the user you want to access the api through, it can be a username or organization name
+2. `hash` - This is the hash/UID of the model you want to get the data of.
 
 > ### Example request
 >
 >       GET https://api.secur3d.ai/model-function/request-file-data?hash=[identifier]&selectedUser=[activeUser]
 >       Headers:
 >         auth-token: [IdToken]
-> 
+>
 > This request assumes a few things,
-> 1. ``identifier`` = The hash/UID or file name of the model depending on the ``type``
-> 2. ``activeUser`` = Either a username or organization name
-> 3. ``IdToken`` = This is the IdToken received from logging into the AWS      cognito backend with a user account.
+>
+> 1. `identifier` = The hash/UID or file name of the model depending on the `type`
+> 2. `activeUser` = Either a username or organization name
+> 3. `IdToken` = This is the IdToken received from logging into the AWS cognito backend with a user account.
 
 ## Response
 
@@ -25,9 +27,11 @@ The response will have a status code which will represent what the response was.
 
 ### Success Messages
 
-> #### ``Success 200``
+> #### `Success 200`
+>
 > A successful response with a response body like this
->```json
+>
+> ```json
 >  {
 >    "statusCode": 200,
 >    "file_name": "string: name of the model",
@@ -54,31 +58,36 @@ The response will have a status code which will represent what the response was.
 >    "texture_matches": "array of json arrays: there is one json array for each texture in the model, these will contain json's with related data to the match",
 >    "total_vertices": "int: total vertices in the model",
 >    "total_triangles": "int: total triangles in the model",
->    "customUID": "string: a custom uid that the user can set", - 
+>    "customUID": "string: a custom uid that the user can set", -
 >    "customKVP": "json array: a list of key-value pairs set by both the user and system" -
 >  }
->```
+> ```
 
 ### Error Messages
 
-> #### ``Error 400``
+> #### `Error 400`
+>
 > An unsuccessful response with a response body like this
->```
+>
+> ```
 >  {
 >    "statusCode": 400,
 >    "body": "Submit user is not a valid organization or username",
 >  }
->```
-> This response means that the ``selectedUser`` you submit either isn't valid or isn't accessible from the currently logged in account.
+> ```
+>
+> This response means that the `selectedUser` you submit either isn't valid or isn't accessible from the currently logged in account.
 
-> #### ``Error 404``
+> #### `Error 404`
+>
 > An unsuccessful response with a response body like this
 >
 >     {
 >       "statusCode": 404,
 >       "response": [error]
 >     }
-> ``error`` will be the error message of what caused the function to be unsuccessful
+>
+> `error` will be the error message of what caused the function to be unsuccessful
 
 ## Example Usage
 
@@ -104,3 +113,13 @@ This is an example of how to make a request using the Redux Toolkit in Next.js
     const activeUser = "Secur3D_User";
     const identifier = "YourHashHere_abcdefghijklmnopqrstuvwxyz";
     const response = generateModel({ IdToken, activeUser, identifier });
+
+## Sandbox Endpoint
+
+This is an example of how to use our Sandbox API endpoint to test a GET request and recieve a dummy response for testing. This request will return data formated as mentioned above.
+
+> ### Example sandbox request
+>
+>     GET https://o1s8pnc024.execute-api.us-west-2.amazonaws.com/Sandbox/sandbox/file-data?hash=[identifier]&selectedUser=[activeUser]
+>       Headers:
+>         auth-token: [IdToken]

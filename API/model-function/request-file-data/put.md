@@ -4,32 +4,34 @@ This api call will allow you to edit all user metadata related to a selected mod
 
 ## Request
 
-The input expects 2 things in the body. You must specify a selectedUser and hash. It will also accept any number of the body parameters.  
-1. ``selectedUser`` - This is the user you want to access the api through, it can be a username or organization name
-2. ``hash`` - This is the hash/UID of the model you want to get the data of.
+The input expects 2 things in the body. You must specify a selectedUser and hash. It will also accept any number of the body parameters.
+
+1. `selectedUser` - This is the user you want to access the api through, it can be a username or organization name
+2. `hash` - This is the hash/UID of the model you want to get the data of.
 
 > ### Example request
 >
->>     PUT https://api.secur3d.ai/model-function/request-file-data
->>     Headers:
->>       auth-token: [IdToken]
->>     Body:
->>     {
->>       "selectedUser": [activeUser],
->>       "hash": [identifier],
->>       "file_name": "string: name of the model",
->>       "creator": "string: name of the user who uploaded the model",
->>       "noAI": "boolean: model cant be used to train AI",
->>       "createdWithAI": "boolean: model was created with AI",
->>       "accreditations": "string: field for other people or groups that helped make the model",
->>       "tags": "string array: list of tags submit by the user",
->>       "distributions": "json array: list of distributors and related data",
->>     }
-> 
+> >     PUT https://api.secur3d.ai/model-function/request-file-data
+> >     Headers:
+> >       auth-token: [IdToken]
+> >     Body:
+> >     {
+> >       "selectedUser": [activeUser],
+> >       "hash": [identifier],
+> >       "file_name": "string: name of the model",
+> >       "creator": "string: name of the user who uploaded the model",
+> >       "noAI": "boolean: model cant be used to train AI",
+> >       "createdWithAI": "boolean: model was created with AI",
+> >       "accreditations": "string: field for other people or groups that helped make the model",
+> >       "tags": "string array: list of tags submit by the user",
+> >       "distributions": "json array: list of distributors and related data",
+> >     }
+>
 > This request assumes a few things,
-> 1. ``identifier`` = The hash/UID of the model
-> 2. ``activeUser`` = Either a username or organization name
-> 3. ``IdToken`` = This is the IdToken received from logging into the AWS cognito backend with a user account.
+>
+> 1. `identifier` = The hash/UID of the model
+> 2. `activeUser` = Either a username or organization name
+> 3. `IdToken` = This is the IdToken received from logging into the AWS cognito backend with a user account.
 
 ## Response
 
@@ -37,24 +39,28 @@ The response will have a status code which will represent what the response was.
 
 ### Success Messages
 
-> #### ``Success 200``
+> #### `Success 200`
+>
 > A successful response with a response body like this
->  ```json
->  {
->    "message": "Success"
->  }
->  ```
+>
+> ```json
+> {
+>   "message": "Success"
+> }
+> ```
 
 ### Error Messages
 
-> #### ``Error 400``
+> #### `Error 400`
+>
 > An unsuccessful response with a response body like this
 >
 >     {
 >       'statusCode': 400,
 >       'body': 'Submit user is not a valid organization or username',
 >     }
-> This response means that the ``selectedUser`` you submit either isn't valid or isn't accessible from the currently logged in account.
+>
+> This response means that the `selectedUser` you submit either isn't valid or isn't accessible from the currently logged in account.
 
 ## Example Usage
 
@@ -100,3 +106,23 @@ This is an example of how to make a request using the Redux Toolkit in Next.js
     const activeUser = "Secur3D_User";
     const identifier = "YourHashHere_abcdefghijklmnopqrstuvwxyz";
     const response = generateModel({ IdToken, activeUser, identifier });
+
+## Sandbox Endpoints
+
+This is an example of how to use our Sandbox API endpoint to test a PUT request and recieve a dummy response for testing. This request will return data formated as mentioned above.
+
+> ### Example request
+>
+> >     PUT https://o1s8pnc024.execute-api.us-west-2.amazonaws.com/Sandbox/sandbox/file-data?hash=[identifier]&selectedUser=[activeUser]
+> >     Headers:
+> >       auth-token: [IdToken]
+> >     Body: {
+> >       "hash": "exampleHash",
+> >       "file_name": "example.glb",
+> >       "model_creator": "exampleCreator",
+> >       "distributions": [{"source": "onlinemarket", "url": "https://onlinemarket.com"}],
+> >       "accreditations": "Example Accreditation",
+> >       "customUID": "exampleUID",
+> >       "customKVP": {"key1": "value1", "key2": "value2"},
+> >       "selectedUser": "exampleUser"
+> >      }
