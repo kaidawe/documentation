@@ -22,7 +22,8 @@ The rest of the parameters in the body are optional.
 >         "object_key": "[The full file name including the file extension]",
 >         "asset_id": "[The file name excluding the file extension]",
 >         "shaHash": "[The sha256 hash of the whole file]",
->         "selectedUser": "[Either a username or organization name]"
+>         "selectedUser": "[Either a username or organization name]",
+>         "file": [The file of the model you want to upload]
 >
 >         //Optional Parameters
 >         "model_creator": "[string: name of the user who uploaded the model]"

@@ -1,6 +1,6 @@
 # Introduction
 
-In this guide you will learn how to setup an account, login to the account, then upload a model from the account through a custom API request. 
+In this guide you will learn how to setup an account, login to the account, upload a model from the account through a custom API request, then finally retrieve the results from the upload.  
 
 ## Making an account
 
@@ -10,9 +10,9 @@ The first step of using the Secur3D service is to create an account on our websi
 
 Now that you have an account you will be able to login to the account using a custom API call. To make requests to all of our services you will either need an IdToken which you can get from the following login request or an API Key. 
 
-The latter is only needed if you intend to integrate as a organization account and can be found [here](https://www.app.secur3d.ai/dashboard/organization/webhook) when signed in as a organization. For more details into how to use this you can visit the organization section of the API documentation.  
+The latter is only needed if you intend to integrate as a organization account, If you do plan to use this feature though, please continue this guide through the organization quick start guide.  
 
-To do this you can create a API call similar to this one
+To get your IdToken you can create a API call similar to this one
 
 ```
 // Declare Api function
@@ -47,9 +47,9 @@ if (data.idToken) {
 });
 ```
 
-## Making a upload request
+## Making an upload request
 
-Now that you have your IdToken you can proceed with any of our API calls. To start though we will cover the upload-model endpoint that allows you to submit a model to be scanned by our services.
+Now that you have your IdToken you can proceed with any of our API calls. To start though we will cover the [upload-model endpoint](https://www.app.secur3d.ai/documentation/API/model-function/upload-model) that allows you to submit a model to be scanned by our services.
 
 This function is separated into 2 parts. The first is the request for a presigned-url. The following is an example of how to make this request.
 
@@ -59,9 +59,8 @@ requestPresignedURL: builder.mutation({
     query: (model) => {
     const { IdToken, assetId, file, activeUser, encodedHash } = model;
 
-    const url = `upload-model`;
     return {
-        url: `/${url}`,
+        url: `https://api.secur3d.ai/model-function/upload-model`,
         method: "POST",
         body: {
         object_key: file.name,
@@ -129,3 +128,36 @@ const fileUpload = async () => {
     }
 };
 ```
+
+## Retrieving the results
+
+Now that you have uploaded a model, you will want to retrieve the results from that upload.  
+For this you will need a `hash`, this is a unique id for each model that gets generated when you upload a model, it will also be returned by the first upload model request.  
+To get the results you will need to make a request to the [request-file-data endpoint](https://www.app.secur3d.ai/documentation/API/model-function/request-file-data). Here is an example of how to make a request to it.
+
+```
+//Declare Api function
+modelData: builder.mutation({
+    query: (model) => {
+        const { IdToken, hash, activeUser } = model;
+        const url = `https://api.secur3d.ai/model-function/request-file-data?$hash=${hash}&selectedUser=${activeUser}`;
+        return {
+            url: `${url}`,
+            method: "GET",
+            headers: {
+            "auth-token": IdToken,
+            }
+        };
+    }
+})
+
+//Call Api Function
+const IdToken = "YourIdTokenFromLoginRequest";
+const activeUser = "Secur3D_User";
+const identifier = "HashFromModelUploaded";
+const response = generateModel({ IdToken, activeUser, identifier });
+```
+
+## Final notes
+
+Thank you for reading through the quick start guide! Since this only covers the basics please check out the individual documentation pages of each endpoint to get a better understanding of what they offer and what else you can do with this service.  
