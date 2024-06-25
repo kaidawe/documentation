@@ -109,7 +109,7 @@ This is an example of how to make a request using the Redux Toolkit in Next.js
 
 ## Sandbox Endpoints
 
-This is an example of how to use our Sandbox API endpoint to test a PUT request and recieve a dummy response for testing. This request will return data formated as mentioned above.
+This is an example of how to use our Sandbox API endpoint to test a PUT request and receive a dummy response for testing. This request will return data formatted as mentioned above.
 
 > ### Example request
 >

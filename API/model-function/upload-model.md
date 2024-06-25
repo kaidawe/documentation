@@ -156,7 +156,7 @@ This is an example of how to make a request using the Redux Toolkit in Next.js
 
 ## Sandbox Endpoints
 
-This is an example of how to use our Sandbox API endpoint to test a POST request and recieve a dummy response for testing. A successfull request will return data formated in the same way as above.
+This is an example of how to use our Sandbox API endpoint to test a POST request and receive a dummy response for testing. A successful request will return data formatted in the same way as above.
 
     POST https://o1s8pnc024.execute-api.us-west-2.amazonaws.com/Sandbox/sandbox/upload-model?selectedUser=[selectedUser]
     Headers:

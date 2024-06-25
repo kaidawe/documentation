@@ -116,7 +116,7 @@ This is an example of how to make a request using the Redux Toolkit in Next.js
 
 ## Sandbox Endpoint
 
-This is an example of how to use our Sandbox API endpoint to test a GET request and recieve a dummy response for testing. This request will return data formated as mentioned above.
+This is an example of how to use our Sandbox API endpoint to test a GET request and receive a dummy response for testing. This request will return data formatted as mentioned above.
 
 > ### Example sandbox request
 >
