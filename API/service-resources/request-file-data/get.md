@@ -13,13 +13,13 @@ The input expects 2 things in the query string parameters. You must specify a se
 >
 >       GET https://api.secur3d.ai/model-function/request-file-data?hash=[identifier]&selectedUser=[activeUser]
 >       Headers:
->         auth-token: [IdToken]
+>         X-Api-Token: [ApiKey]
 >
 > This request assumes a few things,
 >
 > 1. `identifier` = The hash/UID or file name of the model depending on the `type`
-> 2. `activeUser` = Either a username or organization name
-> 3. `IdToken` = This is the IdToken received from logging into the AWS cognito backend with a user account.
+> 2. `activeUser` = Organization name
+> 3. `ApiKey` = This is the Api Key received from the Secur3D portal as a organization.
 
 ## Response
 
@@ -65,19 +65,6 @@ The response will have a status code which will represent what the response was.
 
 ### Error Messages
 
-> #### `Error 400`
->
-> An unsuccessful response with a response body like this
->
-> ```
->  {
->    "statusCode": 400,
->    "body": "Submit user is not a valid organization or username",
->  }
-> ```
->
-> This response means that the `selectedUser` you submit either isn't valid or isn't accessible from the currently logged in account.
-
 > #### `Error 404`
 >
 > An unsuccessful response with a response body like this
@@ -96,23 +83,23 @@ This is an example of how to make a request using the Redux Toolkit in Next.js
     //Declare Api function
     modelData: builder.mutation({
       query: (model) => {
-        const { IdToken, hash, activeUser } = model;
+        const { ApiKey, hash, activeUser } = model;
         const url = `?$hash=${hash}&selectedUser=${activeUser}`;
         return {
           url: `request-file-data${url}`,
           method: "GET",
           headers: {
-            "auth-token": IdToken,
+            "X-Api-Token": ApiKey,
           }
         };
       }
     })
 
     //Call Api Function
-    const IdToken = "YourIdTokenFromCognito";
-    const activeUser = "Secur3D_User";
-    const identifier = "YourHashHere_abcdefghijklmnopqrstuvwxyz";
-    const response = generateModel({ IdToken, activeUser, identifier });
+    const ApiKey = "YourApiKeyFromTheWebsite";
+    const activeUser = "Secur3D_Organization";
+    const identifier = "YourModelHashHere";
+    const response = generateModel({ ApiKey, activeUser, identifier });
 
 ## Sandbox Endpoint
 
@@ -122,4 +109,4 @@ This is an example of how to use our Sandbox API endpoint to test a GET request 
 >
 >     GET https://o1s8pnc024.execute-api.us-west-2.amazonaws.com/Sandbox/sandbox/file-data?hash=[identifier]&selectedUser=[activeUser]
 >       Headers:
->         auth-token: [IdToken]
+>         X-Api-Key: [ApiKey]

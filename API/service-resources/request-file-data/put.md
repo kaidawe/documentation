@@ -11,9 +11,9 @@ The input expects 2 things in the body. You must specify a selectedUser and hash
 
 > ### Example request
 >
-> >     PUT https://api.secur3d.ai/model-function/request-file-data
+> >     PUT https://api.secur3d.ai/model-function/request-file-data?selectedUser=[activeUser]
 > >     Headers:
-> >       auth-token: [IdToken]
+> >       X-Api-Token: [ApiKey]
 > >     Body:
 > >     {
 > >       "selectedUser": [activeUser],
@@ -31,7 +31,7 @@ The input expects 2 things in the body. You must specify a selectedUser and hash
 >
 > 1. `identifier` = The hash/UID of the model
 > 2. `activeUser` = Either a username or organization name
-> 3. `IdToken` = This is the IdToken received from logging into the AWS cognito backend with a user account.
+> 3. `ApiKey` = This is the Api Key received from the Secur3D portal as a organization.  
 
 ## Response
 
@@ -49,19 +49,6 @@ The response will have a status code which will represent what the response was.
 > }
 > ```
 
-### Error Messages
-
-> #### `Error 400`
->
-> An unsuccessful response with a response body like this
->
->     {
->       'statusCode': 400,
->       'body': 'Submit user is not a valid organization or username',
->     }
->
-> This response means that the `selectedUser` you submit either isn't valid or isn't accessible from the currently logged in account.
-
 ## Example Usage
 
 This is an example of how to make a request using the Redux Toolkit in Next.js
@@ -69,12 +56,12 @@ This is an example of how to make a request using the Redux Toolkit in Next.js
     //Declare Api function
     modelData: builder.mutation({
       query: (model) => {
-        const { IdToken, hash, activeUser } = model;
+        const { ApiKey, hash, activeUser } = model;
         return {
-          url: `request-file-data`,
+          url: `request-file-data?selectedUser=${activeUser}`,
           method: "PUT",
           headers: {
-            "auth-token": IdToken,
+            "X-Api-Key": ApiKey,
           },
           body: {
             "selectedUser": activeUser,
@@ -102,8 +89,8 @@ This is an example of how to make a request using the Redux Toolkit in Next.js
     })
 
     //Call Api Function
-    const IdToken = "YourIdTokenFromCognito";
-    const activeUser = "Secur3D_User";
+    const ApiKey = "YourApiKeyFromTheWebsite";
+    const activeUser = "Secur3D_Organization";
     const identifier = "YourHashHere_abcdefghijklmnopqrstuvwxyz";
     const response = generateModel({ IdToken, activeUser, identifier });
 
@@ -115,7 +102,7 @@ This is an example of how to use our Sandbox API endpoint to test a PUT request 
 >
 > >     PUT https://o1s8pnc024.execute-api.us-west-2.amazonaws.com/Sandbox/sandbox/file-data?hash=[identifier]&selectedUser=[activeUser]
 > >     Headers:
-> >       auth-token: [IdToken]
+> >       X-Api-Key: [ApiKey]
 > >     Body: {
 > >       "hash": "exampleHash",
 > >       "file_name": "example.glb",
