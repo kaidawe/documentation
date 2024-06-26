@@ -99,20 +99,20 @@ Now that you have uploaded a model, you will want to retrieve the results from t
 For this you will need a hash, this is a unique id for each model that gets generated when you upload a model, it will also be returned by the first upload model request.
 To get the results you will need to make a request to the request-file-data endpoint. Here is an example of how to make a request to it.
 
-//Declare Api function
-modelData: builder.mutation({
-    query: (model) => {
-        const { ApiKey, hash, activeUser } = model;
-        const url = `https://api.secur3d.ai/service-resources/request-file-data?$hash=${hash}&selectedUser=${activeUser}`;
-        return {
-            url: `${url}`,
-            method: "GET",
-            headers: {
-                "X-Api-Key": ApiKey,
-            }
-        };
-    }
-})
+    //Declare Api function
+    modelData: builder.mutation({
+        query: (model) => {
+            const { ApiKey, hash, activeUser } = model;
+            const url = `https://api.secur3d.ai/service-resources/request-file-data?$hash=${hash}&selectedUser=${activeUser}`;
+            return {
+                url: `${url}`,
+                method: "GET",
+                headers: {
+                    "X-Api-Key": ApiKey,
+                }
+            };
+        }
+    })
 
 //Call Api Function
 const ApiKey = "YourApiKeyFromTheWebsite";
