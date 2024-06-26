@@ -25,7 +25,7 @@ requestPresignedURL: builder.mutation({
     const { ApiKey, assetId, file, activeUser, encodedHash } = model;
 
     return {
-        url: `https://api.secur3d.ai/organizations/upload-model?selectedUser=${activeUser}`,
+        url: `https://api.secur3d.ai/service-resources/upload-model?selectedUser=${activeUser}`,
         method: "POST",
         body: {
             object_key: file.name,
@@ -95,8 +95,30 @@ const fileUpload = async () => {
 
 ## Retrieving the results
 
-Now that you have uploaded a model, you will want to retrieve the results from that upload.  
-We dont currently have an endpoint to retrieve data with an ApiKey but are going to be implementing one shortly. In the meantime you can either access it through a user request by using the [request-file-data endpoint](https://www.app.secur3d.ai/documentation/API/model-function/request-file-data) or of course you can use the [Secur3D portal](https://www.app.secur3d.ai/dashboard/models/manage/list) to check out all of your models in a nice and easy way!
+Now that you have uploaded a model, you will want to retrieve the results from that upload.
+For this you will need a hash, this is a unique id for each model that gets generated when you upload a model, it will also be returned by the first upload model request.
+To get the results you will need to make a request to the request-file-data endpoint. Here is an example of how to make a request to it.
+
+//Declare Api function
+modelData: builder.mutation({
+    query: (model) => {
+        const { ApiKey, hash, activeUser } = model;
+        const url = `https://api.secur3d.ai/service-resources/request-file-data?$hash=${hash}&selectedUser=${activeUser}`;
+        return {
+            url: `${url}`,
+            method: "GET",
+            headers: {
+                "X-Api-Key": ApiKey,
+            }
+        };
+    }
+})
+
+//Call Api Function
+const ApiKey = "YourApiKeyFromTheWebsite";
+const activeUser = "Secur3D_Organization";
+const identifier = "HashFromModelUploaded";
+const response = generateModel({ ApiKey, activeUser, identifier });
 
 ## Final notes
 
