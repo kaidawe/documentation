@@ -103,10 +103,10 @@ This is an example of how to make a request using the Redux Toolkit in Next.js
 
 ## Sandbox Endpoint
 
-This is an example of how to use our Sandbox API endpoint to test a GET request and receive a dummy response for testing. This request will return data formatted as mentioned above.
+This is an example of how to use our Sandbox API endpoint to test a GET request and receive a dummy response. This request will return data formatted as mentioned above.
 
-> ### Example sandbox request
->
->     GET https://o1s8pnc024.execute-api.us-west-2.amazonaws.com/Sandbox/sandbox/file-data?hash=[identifier]&selectedUser=[activeUser]
->       Headers:
->         X-Api-Key: [ApiKey]
+  ```
+  GET https://sandbox.secur3d.ai/sandbox/file-data?hash=[identifier]&selectedUser=[activeUser]
+    Headers:
+      X-Api-Key: [ApiKey]
+  ```

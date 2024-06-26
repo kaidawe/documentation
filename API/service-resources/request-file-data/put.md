@@ -96,20 +96,20 @@ This is an example of how to make a request using the Redux Toolkit in Next.js
 
 ## Sandbox Endpoints
 
-This is an example of how to use our Sandbox API endpoint to test a PUT request and receive a dummy response for testing. This request will return data formatted as mentioned above.
+This is an example of how to use our Sandbox API endpoint to test a PUT request and receive a dummy response. This request will return data formatted as mentioned above.
 
-> ### Example request
->
-> >     PUT https://o1s8pnc024.execute-api.us-west-2.amazonaws.com/Sandbox/sandbox/file-data?hash=[identifier]&selectedUser=[activeUser]
-> >     Headers:
-> >       X-Api-Key: [ApiKey]
-> >     Body: {
-> >       "hash": "exampleHash",
-> >       "file_name": "example.glb",
-> >       "model_creator": "exampleCreator",
-> >       "distributions": [{"source": "onlinemarket", "url": "https://onlinemarket.com"}],
-> >       "accreditations": "Example Accreditation",
-> >       "customUID": "exampleUID",
-> >       "customKVP": {"key1": "value1", "key2": "value2"},
-> >       "selectedUser": "exampleUser"
-> >      }
+  ```
+  PUT https://sandbox.secur3d.ai/sandbox/file-data?hash=[identifier]&selectedUser=[activeUser]
+  Headers:
+    X-Api-Key: [ApiKey]
+  Body: {
+    "hash": "exampleHash",
+    "file_name": "example.glb",
+    "model_creator": "exampleCreator",
+    "distributions": [{"source": "onlinemarket", "url": "https://onlinemarket.com"}],
+    "accreditations": "Example Accreditation",
+    "customUID": "exampleUID",
+    "customKVP": {"key1": "value1", "key2": "value2"},
+    "selectedUser": "exampleUser"
+  }
+  ```
