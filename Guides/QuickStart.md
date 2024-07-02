@@ -85,7 +85,7 @@ const activeUser = "Secur3D_Organization";
 
 //Upload selected file
 const fileUpload = async () => {
-    const encodedHash = useEncodedHash(file);
+    const encodedHash = createHash('sha256').update(file).digest('hex');
     const response = await requestPresignedURL({ ApiKey, assetId, file, activeUser, encodedHash });
     if (response) {
         uploadModel({ file, ...response });
