@@ -2,7 +2,7 @@
 
 There are currently 3 types of webhook events that will be sent if you have a webhook url set
 
-## ingestion
+## Ingestion
 
 This event will be triggered when a model is finished ingestion. The returned data will look like the following json.
 
@@ -31,7 +31,7 @@ This event will be triggered when a model is finished ingestion. The returned da
 ```
   
 
-## compare
+## Compare
 
 This event will be triggered when two models are finished being compared. The data returned will look like the following json.
 
@@ -47,7 +47,7 @@ This event will be triggered when two models are finished being compared. The da
 }
 ```
 
-## moderation
+## Moderation
 
 This event will be triggered when a models moderation status gets changed. The data returned will look like the following json.
 
