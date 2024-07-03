@@ -7,7 +7,8 @@ This api call will return all data related to a selected model.
 The input expects 2 things in the query string parameters. You must specify a selectedUser and hash.
 
 1. `selectedUser` - This is the user you want to access the api through, it can be a username or organization name
-2. `hash` - This is the hash/UID of the model you want to get the data of.
+   
+3. `hash` - This is the hash/UID of the model you want to get the data of.
 
 > ### Example request
 >
@@ -18,7 +19,9 @@ The input expects 2 things in the query string parameters. You must specify a se
 > This request assumes a few things,
 >
 > 1. `identifier` = The hash/UID or file name of the model depending on the `type`
+
 > 2. `activeUser` = Organization name
+
 > 3. `ApiKey` = This is the Api Key received from the Secur3D portal as a organization.
 
 ## Response
