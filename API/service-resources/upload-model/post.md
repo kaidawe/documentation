@@ -22,7 +22,7 @@ All of the other parameters are optional.
 >    {
 >      "object_key": "[The full file name including the file extension]",
 >      "asset_id": "[The file name excluding the file extension]",
->      "shaHash": "[The sha256 hash of the whole file]",
+>      "shaHash": "[The sha256 hash of the whole file base64 encoded]",
 >
 >      //Optional Parameters
 >      "model_creator": "[string: name of the user who uploaded the model]"
@@ -63,7 +63,8 @@ The response will have a status code which will represent what the response was.
 >
 >     {
 >       'url' : [pre_signed_post_url],
->       'file_hash' : [UID]
+>       'file_hash' : [UID],
+>       'secur3d_model_url': [url for model on Secur3D portal]
 >     }
 >
 > `pre_signed_post_url` will be a JSON containing many things that will allow you to upload a model to our servers, one of which will be a url to make a request to.  
@@ -80,11 +81,6 @@ The response will have a status code which will represent what the response was.
 >     }
 >
 > `message` will be the reason the request failed.
-
-> #### `Error 500` From Request Presigned URL
->
-> An unsuccessful response that means there was an internal server error.  
-> This is likely due to an incorrect request.
 
 ## Example Usage
 
