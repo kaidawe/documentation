@@ -57,7 +57,9 @@ The response will have a status code which will represent what the response was.
 
 ### Success Messages
 
-> #### `Success 200` From Request Presigned URL
+#### Request Presigned URL
+
+> #### `Success 200`
 >
 > A successful response with a response body like this means the upload request was approved.
 >
@@ -70,9 +72,17 @@ The response will have a status code which will represent what the response was.
 > `pre_signed_post_url` will be a JSON containing many things that will allow you to upload a model to our servers, one of which will be a url to make a request to.  
 > `UID` will be the hash/UID of the model you are uploading.
 
+#### Presigned URL Upload
+
+> #### `Success 204`
+> 
+> This is returned when you have successfully uploaded your file.
+
 ### Error Messages
 
-> #### `Error 400` From Request Presigned URL
+#### Request Presigned URL
+
+> #### `Error 400`
 >
 > An unsuccessful response with a response body like this
 >
@@ -81,6 +91,22 @@ The response will have a status code which will represent what the response was.
 >     }
 >
 > `message` will be the reason the request failed.
+
+#### Presigned URL Upload
+
+> #### `Error 400`
+>
+> The request was malformed or contained invalid parameters. Common causes include an incorrect signature, missing required fields, or an improperly formatted request. 
+>
+> One cause that is very common is the following `Value for x-amz-checksum-sha256 header is invalid.`, if you have this check that your shaHash in Request Presigned URL is a base64 encoded sha256 hash of the file you are uploading.
+
+> #### `Error 403`
+>
+> Access to the specified resource is denied. This can happen if the presigned URL has expired, the credentials used to sign the URL are invalid, or the permissions do not allow the requested operation.
+
+> #### `Error 404`
+>
+> The specified bucket or object key does not exist. This may occur if the bucket name or object key in the URL is incorrect.
 
 ## Example Usage
 
