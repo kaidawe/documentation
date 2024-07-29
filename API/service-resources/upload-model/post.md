@@ -60,9 +60,9 @@ Currently this endpoint only supports files meeting certain conditions. They are
 - `glb`  
 - `fbx`  
 - `obj`  
-- `zip`  
 
-For `zip` files, any combination of the above file types will be processed.
+We also accept `zip` files with any combination of the above file types. Note that if there is a nested zip in your first zip file it will not be processed.  
+Also if any filepath when uncompressed becomes larger than 4096 characters long it will not be able to get processed (the filepath uncompressed would be `/tmp/{filepath in zip}`)  
 
 ### File size
 
