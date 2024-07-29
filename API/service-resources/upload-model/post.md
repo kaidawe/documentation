@@ -51,6 +51,23 @@ All of the other parameters are optional.
 >     }
 > ```
 
+## File Limitations
+
+Currently this endpoint only supports files meeting certain conditions. They are as follows;
+
+### File types
+
+- `glb`  
+- `fbx`  
+- `obj`  
+- `zip`  
+
+For `zip` files, any combination of the above file types will be processed.
+
+### File size
+
+Any file uploaded must be at least `1500 bytes` and at most `1 GiB`
+
 ## Response
 
 The response will have a status code which will represent what the response was. This is what each code represents.

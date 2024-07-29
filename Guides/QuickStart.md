@@ -14,7 +14,7 @@ Now with this organization account selected you will be able to access your API 
 
 ## Making an upload request
 
-Now that you have your Api Key you can proceed with any of our API calls. To start though we will cover the [upload-model endpoint](https://www.app.secur3d.ai/documentation/API/organizations/upload-model) that allows you to submit a model to be scanned by our services.
+Now that you have your Api Key you can proceed with any of our API calls. To start though we will cover the [upload-model endpoint](https://www.app.secur3d.ai/documentation/API/organizations/upload-model) that allows you to submit a model to be scanned by our services. Please note that there are certain file limitations that apply to this request, you can find a list of these on the endpoint's documentation page  
 
 This function is separated into 2 parts. The first is the request for a presigned-url. The following is an example of how to make this request.
 
