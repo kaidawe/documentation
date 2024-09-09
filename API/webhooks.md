@@ -2,7 +2,7 @@
 
 There are currently 3 types of webhook events that will be sent if you have a webhook url set
 
-## Ingestion
+## ingestion
 
 This event will be triggered when a model is finished ingestion. The returned data will look like the following json.
 
@@ -12,7 +12,6 @@ This event will be triggered when a model is finished ingestion. The returned da
   "event": "ingestion",
   "details": "Completed model ingestion",
   "model": "hash",
-  "customUID": "A custom UID you can set on upload",
   "labels": "{
     \"labels\": [] #A list of labels and their corresponding confidence scores 
     \"moderation_labels\": [] #A list of explicit labels and their corresponding confidence scores 
@@ -24,14 +23,12 @@ This event will be triggered when a model is finished ingestion. The returned da
 {
   "event": "ingestion",
   "details": "Model validation",
-  "model": "hash",
-  "customUID": "A custom UID you can set on upload",
   "result": "successful/unsuccessful" // Will be one or the other
 }
 ```
   
 
-## Compare
+## compare
 
 This event will be triggered when two models are finished being compared. The data returned will look like the following json.
 
@@ -40,14 +37,12 @@ This event will be triggered when two models are finished being compared. The da
   "event": "compare",
   "details": "Details about the event",
   "model_1": "Model 1's hash",
-  "model_1_customUID": "A custom UID you can set on upload",
   "model_2": "Model 2's hash",
-  "model_2_customUID": "A custom UID you can set on upload",
   "results": 1.0 //The similarity percentage as a float
 }
 ```
 
-## Moderation
+## moderation
 
 This event will be triggered when a models moderation status gets changed. The data returned will look like the following json.
 
@@ -57,7 +52,6 @@ This event will be triggered when a models moderation status gets changed. The d
   "event": "moderation",
   "details": "Initial moderation data",
   "model": "hash",
-  "customUID": "A custom UID you can set on upload",
   "status": "Moderation status set by system",
   "priority": "Priority if not automatically approved",
 }
@@ -68,7 +62,6 @@ This event will be triggered when a models moderation status gets changed. The d
   "event": "moderation",
   "details": "Updated moderation data",
   "model": "hash",
-  "customUID": "A custom UID you can set on upload",
   "status": "New status set by user",
   "user": "The user who made the change"
 }
